@@ -638,8 +638,8 @@
         document.title = info.name || '우리동네 국민상회';
         loadShowcase();
       })
-      .catch(function() {
-        showFatalError('stores.json 을 불러오지 못했습니다.');
+      .catch(function(err) {
+        showFatalError('stores.json 을 불러오지 못했습니다.<br><small style="color:#999">' + (err ? err.message : '알 수 없는 오류') + '</small>');
       });
   });
 
