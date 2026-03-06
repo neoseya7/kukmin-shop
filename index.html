@@ -417,6 +417,24 @@
     });
   }
 
+  var DAY_NAMES = ['일','월','화','수','목','금','토'];
+
+  function dateKeyToObj(d) {
+    // MM-DD → Date 객체 (연도는 올해/내년 자동 판단)
+    var parts = d.split('-');
+    if (parts.length !== 2) return null;
+    var m = parseInt(parts[0], 10) - 1;
+    var day = parseInt(parts[1], 10);
+    var now = new Date();
+    var year = now.getFullYear();
+    var dt = new Date(year, m, day);
+    // 오늘보다 2달 이상 전이면 내년으로 간주
+    if (dt < new Date(now.getFullYear(), now.getMonth() - 1, now.getDate())) {
+      dt = new Date(year + 1, m, day);
+    }
+    return dt;
+  }
+
   function buildDateTabs() {
     var dates = [];
     var seen = {};
@@ -431,6 +449,12 @@
       return;
     }
 
+    // 날짜 오름차순 정렬
+    dates.sort(function(a, b) {
+      var da = dateKeyToObj(a), db = dateKeyToObj(b);
+      return (da ? da.getTime() : 0) - (db ? db.getTime() : 0);
+    });
+
     // 오늘 날짜 계산
     var now = new Date();
     var todayKey = pad2(now.getMonth() + 1) + '-' + pad2(now.getDate());
@@ -441,9 +465,12 @@
     var html = '';
     dates.forEach(function(d) {
       var parts = d.split('-');
-      var label = parts.length === 2
-        ? parseInt(parts[0], 10) + '/' + parseInt(parts[1], 10)
-        : d;
+      var label = d;
+      if (parts.length === 2) {
+        var dt = dateKeyToObj(d);
+        var dow = dt ? '(' + DAY_NAMES[dt.getDay()] + ')' : '';
+        label = parseInt(parts[0], 10) + '-' + parseInt(parts[1], 10) + dow;
+      }
       if (d === todayKey) label += ' 오늘';
       var active = d === currentDateKey ? ' active' : '';
       html += '<button class="date-tab' + active + '" data-date="' + escAttr(d) + '">' + escHtml(label) + '</button>';
