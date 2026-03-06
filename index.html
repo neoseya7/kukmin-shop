@@ -353,6 +353,7 @@
 <script>
   // ── 상태 변수 ──
   var GAS_URL = '';
+  var storeCode = '';
   var currentTab = 'showcase';
   var showcaseLoaded = false;
   var announcementLoaded = false;
@@ -360,6 +361,21 @@
   var currentLabels = { plenty: '넉넉해요', soon: '곧 마감이에요', closed: '마감되었어요' };
   var showLevelFlag = true;
   var currentDateKey = null;
+
+  // ── localStorage 캐시 헬퍼 (12시간 TTL) ──
+  var CACHE_TTL = 12 * 60 * 60 * 1000;
+  function saveToCache(key, data) {
+    try { localStorage.setItem('showcase_' + key, JSON.stringify({ ts: Date.now(), data: data })); } catch(_) {}
+  }
+  function loadFromCache(key) {
+    try {
+      var raw = localStorage.getItem('showcase_' + key);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (Date.now() - obj.ts > CACHE_TTL) return null;
+      return obj.data;
+    } catch(_) { return null; }
+  }
 
   // ── JSONP 헬퍼 ──
   function jsonp(url, cb) {
@@ -393,19 +409,23 @@
   }
 
   // ── 상품 보기 ──
-  function loadShowcase() {
+  function loadShowcase(silent) {
     var fab = document.getElementById('fabRefresh');
     fab.classList.add('spinning');
-    document.getElementById('showcaseContent').innerHTML =
-      '<div class="state-msg"><div class="spinner"></div><br>로딩 중...</div>';
-    document.getElementById('dateTabsWrap').style.display = 'none';
+    if (!silent) {
+      document.getElementById('showcaseContent').innerHTML =
+        '<div class="state-msg"><div class="spinner"></div><br>로딩 중...</div>';
+      document.getElementById('dateTabsWrap').style.display = 'none';
+    }
 
     jsonp(GAS_URL + '?action=showcasedata', function(err, res) {
       fab.classList.remove('spinning');
       if (err || !res || !res.success) {
-        document.getElementById('showcaseContent').innerHTML =
-          '<div class="state-msg">데이터를 불러오지 못했습니다.<br>' +
-          '<small style="font-size:12px;color:#ccc">' + (err ? escHtml(err.message) : '') + '</small></div>';
+        if (!silent) {
+          document.getElementById('showcaseContent').innerHTML =
+            '<div class="state-msg">데이터를 불러오지 못했습니다.<br>' +
+            '<small style="font-size:12px;color:#ccc">' + (err ? escHtml(err.message) : '') + '</small></div>';
+        }
         return;
       }
       showcaseLoaded = true;
@@ -413,6 +433,7 @@
       allItems = d.items || [];
       showLevelFlag = d.showLevel !== false;
       if (d.labels) currentLabels = d.labels;
+      saveToCache(storeCode, d);
       buildDateTabs();
     });
   }
@@ -642,7 +663,7 @@
 
     // URL 파라미터에서 store 코드 읽기
     var params = new URLSearchParams(window.location.search);
-    var storeCode = params.get('store');
+    storeCode = params.get('store');
 
     if (!storeCode) {
       showFatalError('URL에 매장 코드가 없습니다.<br><small>예: ?store=15903-0001</small>');
@@ -668,7 +689,19 @@
         var storeName = info.name || '우리동네 국민상회';
         if (titleEl) titleEl.textContent = storeName;
         document.title = storeName;
-        loadShowcase();
+
+        // 캐시 데이터 있으면 즉시 렌더링 후 백그라운드 갱신
+        var cached = loadFromCache(storeCode);
+        if (cached) {
+          showcaseLoaded = true;
+          allItems = cached.items || [];
+          showLevelFlag = cached.showLevel !== false;
+          if (cached.labels) currentLabels = cached.labels;
+          buildDateTabs();
+          loadShowcase(true); // 백그라운드 갱신
+        } else {
+          loadShowcase();
+        }
       })
       .catch(function(err) {
         showFatalError('stores.json 을 불러오지 못했습니다.<br><small style="color:#999">' + (err ? err.message : '알 수 없는 오류') + '</small>');
