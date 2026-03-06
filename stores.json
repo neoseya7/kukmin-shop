@@ -1,194 +1,194 @@
 {
   "stores": {
-    "row-2": {
+    "일괄업데이트": {
       "name": "일괄업데이트",
       "url": "https://script.google.com/macros/s/AKfycbzLgw7npE6Mz446n5ByuBfPGrPMp4vu4InrnTWHj1WJrXtl5_eeYW57D4kfbRsdDgGZLw/exec"
     },
-    "row-3": {
+    "카카오톡공동구매": {
       "name": "카카오톡공동구매",
       "url": "https://script.google.com/macros/s/AKfycbxn9Qhf66DQCl7DGiQi-5StIz3akw28-NB_6WMPvj2LA9r_013T2kYnezA5dIEi1NAd/exec"
     },
-    "row-4": {
+    "우리동네 국민상회 소사괴안점": {
       "name": "우리동네 국민상회 소사괴안점",
       "url": "https://script.google.com/macros/s/AKfycbytdUk0X8XgD3Oqp-JW9UdaRuEu0meVytIIjK4ZljpSIbWbcKILDllRzS8mwyOWwvk4/exec"
     },
-    "15903-0001": {
+    "우리동네 국민상회 운정 해오름마을점": {
       "name": "우리동네 국민상회 운정 해오름마을점",
       "url": "https://script.google.com/macros/s/AKfycbySZ0ncHxaL-Zhi2XyV1aVdymCs3UBh_-xKszpEwgrDd2fasEnYgO3IPtJc1S-sBO_8/exec"
     },
-    "row-6": {
+    "우리동네 국민상회 마곡점": {
       "name": "우리동네 국민상회 마곡점",
       "url": "https://script.google.com/macros/s/AKfycbwQo52uOSGXVYBZJ0HdwVbsTsG9vMfcx3q_K4NoqB_3L4Kl5eqsfm5PTJjXuVC_e3Rpow/exec"
     },
-    "row-7": {
+    "우리동네 국민상회 은계호반점": {
       "name": "우리동네 국민상회 은계호반점",
       "url": "https://script.google.com/macros/s/AKfycbzIJTzylbzuw9B3Med9S6xQX_7cD6MoTJE4teEQJPMUTsRZiFT_SUJDuY9vUsHZmgsr/exec"
     },
-    "row-8": {
+    "우리동네국민상회 망포점": {
       "name": "우리동네국민상회 망포점",
       "url": "https://script.google.com/macros/s/AKfycbxKVt1nOTCXqpQWzvHMG74qxyeHRcnupLU72DGzypRfxiE19hKQHyp_eVB9fs-0ojtZLA/exec"
     },
-    "row-9": {
+    "우리동네 국민상회 안산중앙점": {
       "name": "우리동네 국민상회 안산중앙점",
       "url": "https://script.google.com/macros/s/AKfycbyZJQPq7mCJCvkqkctt4hD2C9djG6xw13ILUfjH9CT0ZI2-g3PuK6cqGwokK8Dvatxs/exec"
     },
-    "row-10": {
+    "우리동네 국민상회 간석역점": {
       "name": "우리동네 국민상회 간석역점",
       "url": "https://script.google.com/macros/s/AKfycbwCBAF3OxKguBre4zZzl1Ci7c3TbOAEq-i6_DVZ2GXhb-_Me-PwrUQWoQKPo6UirCYy2Q/exec"
     },
-    "row-11": {
+    "우리동네 국민상회 산곡점": {
       "name": "우리동네 국민상회 산곡점",
       "url": "https://script.google.com/macros/s/AKfycbxBYhkBDbPJLjcrYeMgTZBTCkJRrkHY7Li95PQ6SewxsiBEDb1irGtV14_FuyUOGam9/exec"
     },
-    "row-12": {
+    "우리동네 국민상회 물향기점": {
       "name": "우리동네 국민상회 물향기점",
       "url": "https://script.google.com/macros/s/AKfycbwSwYEvRm1tabaLjF6VGEGQ6MaSSKU_sYKprPG45GW6VlFpypSVOf36KMKa1pMrUUxw/exec"
     },
-    "row-13": {
+    "우리동네 국민상회 구월점": {
       "name": "우리동네 국민상회 구월점",
       "url": "https://script.google.com/macros/s/AKfycbwKVNHo4MO-qFuikVXol9q4uVwo3BJZb0eOxWnxlZBWDu8dOzLA2Ovx6nYM8fPlqOW79w/exec"
     },
-    "row-14": {
+    "우리동네 국민상회 DMC점": {
       "name": "우리동네 국민상회 DMC점",
       "url": "https://script.google.com/macros/s/AKfycbxrOME4PhMaewwRIP9psgCzrXRk-PoJvGEpThxSNLjhZq1iV4E_uS-gZQWIPH59NXSeSQ/exec"
     },
-    "row-15": {
+    "우리동네 국민상회 신길점": {
       "name": "우리동네 국민상회 신길점",
       "url": "https://script.google.com/macros/s/AKfycbwd855h0bhghceE5tND5wiRz1OVrEFKE4v1jWTaeAyNx8dwHEKD-Xek9oVwyjzosT-H/exec"
     },
-    "row-16": {
+    "우리동네 국민상회 평내호평점": {
       "name": "우리동네 국민상회 평내호평점",
       "url": "https://script.google.com/macros/s/AKfycbx6YYDooQ4SU5XD30bsp2LY07cdAguOPGmYmVY0c5aDyj918pVeAOvSy81S534R-FPYYg/exec"
     },
-    "row-17": {
+    "우리동네 국민상회 호계점": {
       "name": "우리동네 국민상회 호계점",
       "url": "https://script.google.com/macros/s/AKfycbxkZ5t0W-E_u5DFNAaK2DDnEu2tVpvYaA-MnU1M_f7lEUNV32YoPcstlR1vNTx_0mMbiw/exec"
     },
-    "row-18": {
+    "우리동네 국민상회 구파발역점": {
       "name": "우리동네 국민상회 구파발역점",
       "url": "https://script.google.com/macros/s/AKfycbwRQPoN8f7YA4IQWmgR8llMIiSIcnxo1c2PN2k-s6zbj6z5ak8wUm9wokwxzaYJKFAY/exec"
     },
-    "row-19": {
+    "국민상회 학익점": {
       "name": "국민상회 학익점",
       "url": "https://script.google.com/macros/s/AKfycbzZXufAX44wi0JFr50ADXwjuKifGp1ecrjm2fa20SFqq4NbAskQ6shrMZmARGUU78nB/exec"
     },
-    "row-20": {
+    "우리동네 국민상회 대치점": {
       "name": "우리동네 국민상회 대치점",
       "url": "https://script.google.com/macros/s/AKfycbxUZ8Jxv8XA5r8qX8GM24lffIN8apvOVIwQe_KXtLEg9OY7QgEFxdunPS8C-7-UTExOdQ/exec"
     },
-    "row-21": {
+    "우리동네 국민상회 봉담와우리점": {
       "name": "우리동네 국민상회 봉담와우리점",
       "url": "https://script.google.com/macros/s/AKfycbzdHaPJOi80AKUtejpDM6m7EtNoWFH3ilwMdSCW7x7D-5mENDH1a7FeH7JQMvNHH5KB/exec"
     },
-    "row-22": {
+    "우리동네 국민상회 옥련점": {
       "name": "우리동네 국민상회 옥련점",
       "url": "https://script.google.com/macros/s/AKfycbzL0bMcA7L1KNRsYfKIuQo2HTDQddPF0Gb7fOniSs_jFYW5keb2T8YJ86mYe0EY0onMLQ/exec"
     },
-    "row-23": {
+    "우리동네 국민상회 강릉유천점": {
       "name": "우리동네 국민상회 강릉유천점",
       "url": "https://script.google.com/macros/s/AKfycbzIqN3Y6uL2fALkt_SFmceW6WYPcXFvO5M01Clk_zLMpJ-BXo52MmadS14iA6yIfYisqQ/exec"
     },
-    "row-24": {
+    "우리동네 국민상회 새솔점": {
       "name": "우리동네 국민상회 새솔점",
       "url": "https://script.google.com/macros/s/AKfycby1uZTssret3oYOtfLcp0fzTf4D7M3usWb2wVKfvjAY7otfaWV5pHsZsF1503iIde7d/exec"
     },
-    "row-26": {
+    "우리동네 국민상회 영종하늘점": {
       "name": "우리동네 국민상회 영종하늘점",
       "url": "https://script.google.com/macros/s/AKfycbxAQrkudIHhGSS_HW6Fupl-tJoEKk0TF-H2EJ2YXnpfD4u2UdlMfCGAvmmLxiW-bol8VA/exec"
     },
-    "row-27": {
+    "우리동네 국민상회 구리갈매점": {
       "name": "우리동네 국민상회 구리갈매점",
       "url": "https://script.google.com/macros/s/AKfycbyrB2sARMab_KLONu1yDnDkS0UkSQTMyYWioNi-CKQtmXjEWv-ZvKQnbJQSJY449WCn/exec"
     },
-    "row-28": {
+    "우리동네 국민상회 초곡점": {
       "name": "우리동네 국민상회 초곡점",
       "url": "https://script.google.com/macros/s/AKfycbwcvBdyK1611yjF1aiQ1mIs9xQ1aGDFmTXQ9-y5iDuDdsRAGWnF0_FaD7wDnLQElutfYg/exec"
     },
-    "row-29": {
+    "우리동네 국민상회 위례중앙점": {
       "name": "우리동네 국민상회 위례중앙점",
       "url": "https://script.google.com/macros/s/AKfycbyeF50hIPocriSgL7VEMZcRoiSHyS2ODrdu3r7HQGOtTVigdJ2W7Pvt1Nd9NDOpXZA/exec"
     },
-    "row-30": {
+    "우리동네 국민상회 봉담내리점": {
       "name": "우리동네 국민상회 봉담내리점",
       "url": "https://script.google.com/macros/s/AKfycbzRpCozo_hrQa670pgbiVvE5Eh3edw6vy1qCW0PPa5MB29SCee_YNVi_wboiLq_KBrOrQ/exec"
     },
-    "row-31": {
+    "우리동네 국민상회 상일고덕점": {
       "name": "우리동네 국민상회 상일고덕점",
       "url": "https://script.google.com/macros/s/AKfycbwow4lKfXAs3ZNvJ5YtXa_W65USFhPfnNAnowVmoIWGzP6csHtvVLtPUeScOxl9FqYQYg/exec"
     },
-    "row-32": {
+    "우리동네 국민상회 강릉교동점": {
       "name": "우리동네 국민상회 강릉교동점",
       "url": "https://script.google.com/macros/s/AKfycbzZxBXT58urBOxTVfh2mZ8w29OZNKKeKR6q-nWkiiIeVCxk54PBa2KGqqqs2v5PY8_PVA/exec"
     },
-    "row-33": {
+    "우리동네 국민상회 배곧한라점": {
       "name": "우리동네 국민상회 배곧한라점",
       "url": "https://script.google.com/macros/s/AKfycbx2Os5D_ZtgrlKvF_fRMfO6Vy-uMxIQDyoe3miVAALUF7aIChjdJBQu1YeVr0Onfkyc/exec"
     },
-    "row-34": {
+    "우리동네 국민상회 하남미사점": {
       "name": "우리동네 국민상회 하남미사점",
       "url": "https://script.google.com/macros/s/AKfycbwm5znooLq4Uh-2593wAMMrfhW5YjlmlOWtK2Fx1ZJfeBOGxC834anim9YE5Y1d0RNeSw/exec"
     },
-    "row-35": {
+    "우리동네 국민상회 광명뉴타운점": {
       "name": "우리동네 국민상회 광명뉴타운점",
       "url": "https://script.google.com/macros/s/AKfycbyZ5YsJ1y5Pzjqg90MMtRmo1fUaBPQH-CjgCRHyv9mY0aXvY2bpwPrshGt211GgzZwg/exec"
     },
-    "row-36": {
+    "우리동네 국민상회 옥계산동점": {
       "name": "우리동네 국민상회 옥계산동점",
       "url": "https://script.google.com/macros/s/AKfycbws4XSnAjSqFnaRYnEYcCB1PoZRWyM5DJFXDTKMv0Co8jZO2VNkfmH9ege6M9_YTf6z/exec"
     },
-    "row-37": {
+    "우리동네국민상회 매교점": {
       "name": "우리동네국민상회 매교점",
       "url": "https://script.google.com/macros/s/AKfycbxoTJr8ZJyoj_VW7LDWA65XPUAFT5CJKQKpGK_slnvwLVwUmDNRZxHK2fuhGp0Ipd8u/exec"
     },
-    "row-38": {
+    "우리동네 국민상회 북수원점": {
       "name": "우리동네 국민상회 북수원점",
       "url": "https://script.google.com/macros/s/AKfycbwMZY9FO2r-4dBWhzbhmKUtm3K3Xa-wdtpfs9fzs9LfENv6SxqsvvzxqT4ICb_1Lwam0w/exec"
     },
-    "row-39": {
+    "우리동네 국민상회 장곡점": {
       "name": "우리동네 국민상회 장곡점",
       "url": "https://script.google.com/macros/s/AKfycbxB9d4768NQ4uIgwf5x7QNLrVFoEvOwWSOop1qKq1fYoCS9wmpIa_uQPBsSzSBp99QSFw/exec"
     },
-    "row-40": {
+    "우리동네 국민상회 초롱꽃점": {
       "name": "우리동네 국민상회 초롱꽃점",
       "url": "https://script.google.com/macros/s/AKfycbzsHnXK2hz3NjCxgBJweHl7AyBjUmBKruMZs4Dh7nHmy3NIhE1TFg41mk5IyCbitU-1aw/exec"
     },
-    "row-41": {
+    "우리동네 국민상회 과천점": {
       "name": "우리동네 국민상회 과천점",
       "url": "https://script.google.com/macros/s/AKfycbynWTAqa7JugYO9UtBy0PePmdwduydLebCZ1TArINjOYiYnNdlG0G-eAoz9KFDbC6PQjg/exec"
     },
-    "row-42": {
+    "우리동네 국민상회 강일점": {
       "name": "우리동네 국민상회 강일점",
       "url": "https://script.google.com/macros/s/AKfycbyf7X1fiWgOjCQxKsuptAs9WZO0fVXr73n3DLXMOfOcp1b4yjX1PgKPAsz4BINwljSs/exec"
     },
-    "row-43": {
+    "우리동네 국민상회 광명2호점": {
       "name": "우리동네 국민상회 광명2호점",
       "url": "https://script.google.com/macros/s/AKfycbySnAioXQZy5sJ4w-0d7DWGm6aAsO0U3-J0LoiG_jsoNb6LxSfhnTd6lvHHz2V12SVt6A/exec"
     },
-    "row-44": {
+    "우리동네 국민상회 월곶점": {
       "name": "우리동네 국민상회 월곶점",
       "url": "https://script.google.com/macros/s/AKfycbwGiEc12_TgBWdbPG7N2U5d_CwKkUYReaDbzv4gxy8l2-IAgNWqXOVfCFvYj4Qu4cXr/exec"
     },
-    "row-45": {
+    "우리동네 국민상회 옥계현진점": {
       "name": "우리동네 국민상회 옥계현진점",
       "url": "https://script.google.com/macros/s/AKfycbz38GW7Bgv7PwosOP8PMluxmMfdukoYpJPB2x18-Mo2vcQ5a8F-d4W5SXORWA7Yk54a/exec"
     },
-    "row-46": {
+    "우리동네국민상회 목동센트럴점": {
       "name": "우리동네국민상회 목동센트럴점",
       "url": "https://script.google.com/macros/s/AKfycby3-6-PPk0_WB7ug0K-dSRMSXQJ4cLihtoTR1R-gu1QVqVOw9h7Q2V9p1X7i9X0Pj-d_Q/exec"
     },
-    "row-47": {
+    "우리동네 국민상회 도화점": {
       "name": "우리동네 국민상회 도화점",
       "url": "https://script.google.com/macros/s/AKfycbxhALQfSB4iRD8auhEuwC0_qaKRNC6X1TfjmV-sGdrQOgXmSaLHzNDaL8xYzGuhN0BGnA/exec"
     },
-    "row-48": {
+    "향동": {
       "name": "향동",
       "url": "https://script.google.com/macros/s/AKfycbzNzZE2u4uh-YI4ExcqzOQoUyMJGexOwCYWBGxhcKmu1N46m9MCyJ1EvyGd9KgDmj8YlA/exec"
     },
-    "row-49": {
+    "일산식사": {
       "name": "일산식사",
       "url": "https://script.google.com/macros/s/AKfycbxRh6u0kFRT1M01KUATEj_iVYBll0s0LJQ7n88fsgUn9nuX0Ub9Wd_zSSROt7GjWr-t3g/exec"
     },
-    "row-50": {
+    "수원메탄": {
       "name": "수원메탄",
       "url": "https://script.google.com/macros/s/AKfycbzUso576KE-B0V4uOjbefbXRXsowL7U6LLJ_9ccL2O4DEjCHL4bZDpoCOOtg1ACgyK1/exec"
     }
