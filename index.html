@@ -634,8 +634,10 @@
           return;
         }
         GAS_URL = info.url;
-        document.getElementById('siteTitle').textContent = info.name || '우리동네 국민상회';
-        document.title = info.name || '우리동네 국민상회';
+        var titleEl = document.getElementById('siteTitle');
+        var storeName = info.name || '우리동네 국민상회';
+        if (titleEl) titleEl.textContent = storeName;
+        document.title = storeName;
         loadShowcase();
       })
       .catch(function(err) {
