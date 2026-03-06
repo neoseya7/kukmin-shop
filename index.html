@@ -514,9 +514,7 @@
         badgeHtml = '<span class="badge ' + cls + '">' + escHtml(lbl) + '</span>';
       }
 
-      var stockHtml = item.stock > 0
-        ? '<span class="product-stock">재고 ' + item.stock + '</span>'
-        : '';
+      var stockHtml = '';
 
       html += '<div class="product-card">' +
         imgHtml +
