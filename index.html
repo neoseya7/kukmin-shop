@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>우리동네 국민상회</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+      background: #f5f5f5;
+      color: #222;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header / Tab bar ── */
+    .site-header {
+      background: #fff;
+      padding: 14px 16px 0;
+      text-align: center;
+      border-bottom: 1px solid #e8e8e8;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .site-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 10px;
+    }
+    .tab-bar {
+      display: flex;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 11px 8px;
+      border: none;
+      background: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: #888;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      font-family: inherit;
+    }
+    .tab-btn.active {
+      color: #1a73e8;
+      border-bottom-color: #1a73e8;
+    }
+
+    /* ── Page sections ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── Date tabs (showcase) ── */
+    .date-tabs-wrap {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+    .date-tabs-wrap::-webkit-scrollbar { display: none; }
+    .date-tabs {
+      display: inline-flex;
+      gap: 8px;
+      padding: 10px 12px;
+    }
+    .date-tab {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1.5px solid #ddd;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .date-tab.active {
+      background: #1a73e8;
+      border-color: #1a73e8;
+      color: #fff;
+    }
+    .date-tab:hover:not(.active) {
+      border-color: #1a73e8;
+      color: #1a73e8;
+    }
+
+    /* ── Product grid ── */
+    .product-grid {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (min-width: 480px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 768px) {
+      .product-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 16px; }
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #f0f0f0;
+      display: block;
+    }
+    .product-img-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: #ccc;
+    }
+    .product-body {
+      padding: 8px 10px 10px;
+    }
+    .product-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      word-break: keep-all;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      flex-wrap: wrap;
+      min-height: 22px;
+    }
+    .product-stock {
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .badge-plenty { background: #e6f4ea; color: #137333; }
+    .badge-soon   { background: #fef7e0; color: #e37400; }
+    .badge-closed { background: #fce8e6; color: #c5221f; }
+
+    /* ── State messages ── */
+    .state-msg {
+      text-align: center;
+      padding: 60px 20px;
+      color: #aaa;
+      font-size: 15px;
+    }
+    .spinner {
+      display: inline-block;
+      width: 32px; height: 32px;
+      border: 3px solid #e0e0e0;
+      border-top-color: #1a73e8;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 10px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── FAB (refresh) ── */
+    .fab {
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: #1a73e8;
+      color: #fff;
+      border: none;
+      box-shadow: 0 2px 8px rgba(26,115,232,0.4);
+      cursor: pointer;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fab:active { background: #1558b0; }
+    .fab.spinning svg { animation: spin 0.8s linear infinite; }
+    .fab.hidden { display: none; }
+
+    /* ── Search tab ── */
+    .search-page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .announcement {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #856404;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .search-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .search-input {
+      flex: 1;
+      padding: 13px 14px;
+      font-size: 16px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: #1a73e8; }
+    .search-btn {
+      padding: 13px 22px;
+      background: #1a73e8;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .search-btn:disabled { background: #ccc; cursor: not-allowed; }
+    .search-btn:hover:not(:disabled) { background: #1558b0; }
+
+    .result-count { color: #555; font-size: 13px; margin-bottom: 8px; font-weight: 500; }
+    .result-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .result-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .result-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .result-nickname { font-weight: 700; font-size: 15px; }
+    .result-date { color: #888; font-size: 13px; margin-left: auto; }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px dashed #f0f0f0;
+      font-size: 13px;
+      gap: 8px;
+    }
+    .result-item:last-of-type { border-bottom: none; }
+    .result-item-name { color: #333; font-weight: 500; flex: 1; }
+    .result-item-right { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+    .result-item-qty { color: #1a73e8; font-weight: 700; }
+    .result-item-price { color: #888; font-size: 12px; }
+    .badge-arrived-y { padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 700; background: #e6f4ea; color: #137333; border: 1px solid #ceead6; }
+    .badge-arrived-n { padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 700; background: #fce8e6; color: #c5221f; border: 1px solid #fad2cf; }
+    .result-total { text-align: right; font-weight: 700; font-size: 14px; color: #1a73e8; margin-top: 8px; padding-top: 8px; border-top: 2px solid #e8e8e8; }
+    .error-msg { background: #fce8e6; color: #c5221f; border-radius: 8px; padding: 12px 14px; font-size: 14px; margin-bottom: 10px; }
+
+    @media (max-width: 480px) {
+      .search-box { flex-direction: column; }
+      .search-btn { width: 100%; padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-title">우리동네 국민상회</div>
+  <div class="tab-bar">
+    <button class="tab-btn active" id="tabShowcase" onclick="switchTab('showcase')">🛍 상품 보기</button>
+    <button class="tab-btn" id="tabSearch" onclick="switchTab('search')">🔍 예약 조회</button>
+  </div>
+</header>
+
+<!-- ── 상품 보기 탭 ── -->
+<section id="page-showcase" class="page active">
+  <div class="date-tabs-wrap" id="dateTabsWrap" style="display:none;">
+    <div class="date-tabs" id="dateTabs"></div>
+  </div>
+  <div id="showcaseContent">
+    <div class="state-msg"><div class="spinner"></div><br>로딩 중...</div>
+  </div>
+</section>
+
+<!-- ── 예약 조회 탭 ── -->
+<section id="page-search" class="page">
+  <div class="search-page">
+    <div id="announcementDiv" class="announcement" style="display:none;"></div>
+    <div class="search-box">
+      <input type="text" id="searchInput" class="search-input"
+             placeholder="닉네임을 입력하세요"
+             autocomplete="off">
+      <button class="search-btn" id="searchBtn" onclick="doSearch()">검색</button>
+    </div>
+    <div id="searchSpinner" class="state-msg" style="display:none;">
+      <div class="spinner"></div>
+    </div>
+    <div id="searchError" class="error-msg" style="display:none;"></div>
+    <div id="searchResultCount" class="result-count" style="display:none;"></div>
+    <div id="searchResults"></div>
+  </div>
+</section>
+
+<!-- FAB 새로고침 버튼 -->
+<button class="fab" id="fabRefresh" onclick="loadShowcase()" title="새로고침">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2.5"
+       stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="23 4 23 10 17 10"></polyline>
+    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+  </svg>
+</button>
+
+<script>
+  // ── 상태 변수 ──
+  var GAS_URL = '';
+  var currentTab = 'showcase';
+  var showcaseLoaded = false;
+  var announcementLoaded = false;
+  var allItems = [];
+  var currentLabels = { plenty: '넉넉해요', soon: '곧 마감이에요', closed: '마감되었어요' };
+  var showLevelFlag = true;
+  var currentDateKey = null;
+
+  // ── JSONP 헬퍼 ──
+  function jsonp(url, cb) {
+    var id = 'cb_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+    var s = document.createElement('script');
+    window[id] = function(data) {
+      cb(null, data);
+      if (s.parentNode) s.parentNode.removeChild(s);
+      delete window[id];
+    };
+    s.onerror = function() {
+      cb(new Error('네트워크 오류 또는 잘못된 URL'));
+      if (s.parentNode) s.parentNode.removeChild(s);
+      delete window[id];
+    };
+    s.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + id;
+    document.head.appendChild(s);
+  }
+
+  // ── 탭 전환 ──
+  function switchTab(tab) {
+    currentTab = tab;
+    document.getElementById('tabShowcase').classList.toggle('active', tab === 'showcase');
+    document.getElementById('tabSearch').classList.toggle('active', tab === 'search');
+    document.getElementById('page-showcase').classList.toggle('active', tab === 'showcase');
+    document.getElementById('page-search').classList.toggle('active', tab === 'search');
+    document.getElementById('fabRefresh').classList.toggle('hidden', tab !== 'showcase');
+
+    if (tab === 'showcase' && !showcaseLoaded) loadShowcase();
+    if (tab === 'search' && !announcementLoaded) loadAnnouncement();
+  }
+
+  // ── 상품 보기 ──
+  function loadShowcase() {
+    var fab = document.getElementById('fabRefresh');
+    fab.classList.add('spinning');
+    document.getElementById('showcaseContent').innerHTML =
+      '<div class="state-msg"><div class="spinner"></div><br>로딩 중...</div>';
+    document.getElementById('dateTabsWrap').style.display = 'none';
+
+    jsonp(GAS_URL + '?action=showcasedata', function(err, res) {
+      fab.classList.remove('spinning');
+      if (err || !res || !res.success) {
+        document.getElementById('showcaseContent').innerHTML =
+          '<div class="state-msg">데이터를 불러오지 못했습니다.<br>' +
+          '<small style="font-size:12px;color:#ccc">' + (err ? escHtml(err.message) : '') + '</small></div>';
+        return;
+      }
+      showcaseLoaded = true;
+      var d = res.data || {};
+      allItems = d.items || [];
+      showLevelFlag = d.showLevel !== false;
+      if (d.labels) currentLabels = d.labels;
+      buildDateTabs();
+    });
+  }
+
+  function buildDateTabs() {
+    var dates = [];
+    var seen = {};
+    allItems.forEach(function(item) {
+      if (!seen[item.date]) { seen[item.date] = true; dates.push(item.date); }
+    });
+
+    if (dates.length === 0) {
+      document.getElementById('dateTabsWrap').style.display = 'none';
+      document.getElementById('showcaseContent').innerHTML =
+        '<div class="state-msg">진열할 상품이 없습니다.</div>';
+      return;
+    }
+
+    // 오늘 날짜 계산
+    var now = new Date();
+    var todayKey = pad2(now.getMonth() + 1) + '-' + pad2(now.getDate());
+
+    // 오늘이 있으면 선택, 없으면 첫 번째
+    currentDateKey = dates.indexOf(todayKey) >= 0 ? todayKey : dates[0];
+
+    var html = '';
+    dates.forEach(function(d) {
+      var parts = d.split('-');
+      var label = parts.length === 2
+        ? parseInt(parts[0], 10) + '/' + parseInt(parts[1], 10)
+        : d;
+      if (d === todayKey) label += ' 오늘';
+      var active = d === currentDateKey ? ' active' : '';
+      html += '<button class="date-tab' + active + '" data-date="' + escAttr(d) + '">' + escHtml(label) + '</button>';
+    });
+    document.getElementById('dateTabs').innerHTML = html;
+
+    // 이벤트 위임
+    document.getElementById('dateTabs').onclick = function(e) {
+      var btn = e.target.closest('.date-tab');
+      if (!btn) return;
+      document.querySelectorAll('.date-tab').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentDateKey = btn.dataset.date;
+      renderProducts(currentDateKey);
+    };
+
+    document.getElementById('dateTabsWrap').style.display = '';
+    renderProducts(currentDateKey);
+  }
+
+  function renderProducts(dateKey) {
+    var filtered = allItems.filter(function(item) { return item.date === dateKey; });
+    if (filtered.length === 0) {
+      document.getElementById('showcaseContent').innerHTML =
+        '<div class="state-msg">이 날짜에 진열된 상품이 없습니다.</div>';
+      return;
+    }
+
+    var html = '<div class="product-grid">';
+    filtered.forEach(function(item) {
+      var imgHtml = item.image
+        ? '<img class="product-img" src="' + escAttr(item.image) + '" alt="" loading="lazy"' +
+          ' onerror="this.outerHTML=\'<div class=product-img-placeholder>🛍</div>\'">'
+        : '<div class="product-img-placeholder">🛍</div>';
+
+      var badgeHtml = '';
+      if (showLevelFlag && item.level) {
+        var lk = item.level.toLowerCase();
+        var cls = lk === 'plenty' ? 'badge-plenty' : (lk === 'soon' ? 'badge-soon' : 'badge-closed');
+        var lbl = currentLabels[lk] || item.level;
+        badgeHtml = '<span class="badge ' + cls + '">' + escHtml(lbl) + '</span>';
+      }
+
+      var stockHtml = item.stock > 0
+        ? '<span class="product-stock">재고 ' + item.stock + '</span>'
+        : '';
+
+      html += '<div class="product-card">' +
+        imgHtml +
+        '<div class="product-body">' +
+          '<div class="product-name">' + escHtml(item.name) + '</div>' +
+          '<div class="product-footer">' + stockHtml + badgeHtml + '</div>' +
+        '</div>' +
+      '</div>';
+    });
+    html += '</div>';
+    document.getElementById('showcaseContent').innerHTML = html;
+  }
+
+  // ── 예약 조회 ──
+  function loadAnnouncement() {
+    jsonp(GAS_URL + '?action=getAnnouncement', function(err, res) {
+      announcementLoaded = true;
+      if (!err && res && res.success && res.data && res.data.trim()) {
+        var div = document.getElementById('announcementDiv');
+        div.innerHTML = res.data;
+        div.style.display = '';
+      }
+    });
+  }
+
+  function doSearch() {
+    var term = document.getElementById('searchInput').value.trim();
+    if (!term) { showSearchError('검색어를 입력해주세요.'); return; }
+
+    document.getElementById('searchBtn').disabled = true;
+    document.getElementById('searchSpinner').style.display = '';
+    document.getElementById('searchError').style.display = 'none';
+    document.getElementById('searchResultCount').style.display = 'none';
+    document.getElementById('searchResults').innerHTML = '';
+
+    jsonp(GAS_URL + '?action=search&nickname=' + encodeURIComponent(term), function(err, res) {
+      document.getElementById('searchSpinner').style.display = 'none';
+      document.getElementById('searchBtn').disabled = false;
+      if (err || !res || !res.success) {
+        showSearchError((res && res.error) || '검색 중 오류가 발생했습니다.');
+        return;
+      }
+      renderSearchResults(res.data || []);
+    });
+  }
+
+  function renderSearchResults(rows) {
+    var countDiv = document.getElementById('searchResultCount');
+    var container = document.getElementById('searchResults');
+
+    if (rows.length === 0) {
+      countDiv.style.display = 'none';
+      container.innerHTML = '<div class="state-msg">검색 결과가 없습니다.</div>';
+      return;
+    }
+
+    countDiv.textContent = '검색 결과: ' + rows.length + '건';
+    countDiv.style.display = '';
+
+    var html = '<div class="result-list">';
+    rows.forEach(function(row) {
+      html += '<div class="result-card">';
+      html += '<div class="result-card-header">' +
+        '<span class="result-nickname">' + escHtml(row.nickname || '') + '</span>' +
+        '<span class="result-date">' + escHtml(row.dateSheet || '') + '</span>' +
+        '</div>';
+
+      if (row.items && row.items.length > 0) {
+        row.items.forEach(function(item) {
+          var badge = item.arrived
+            ? '<span class="badge-arrived-y">✔ 입고</span>'
+            : '<span class="badge-arrived-n">⏳ 미입고</span>';
+          var price = (item.calcPrice !== null && item.calcPrice !== undefined)
+            ? '<span class="result-item-price">' + formatMoney(item.calcPrice) + '원</span>' : '';
+          html += '<div class="result-item">' +
+            '<span class="result-item-name">' + escHtml(item.name) + '</span>' +
+            '<div class="result-item-right">' + badge +
+              '<span class="result-item-qty">' + item.qty + '개</span>' + price +
+            '</div>' +
+          '</div>';
+        });
+      } else {
+        html += '<div class="result-item"><span class="result-item-name">' +
+          escHtml(row.orderList || '') + '</span></div>';
+      }
+
+      if (row.totalPrice) {
+        html += '<div class="result-total">합계: ' + formatMoney(row.totalPrice) + '원</div>';
+      }
+      html += '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  function showSearchError(msg) {
+    var div = document.getElementById('searchError');
+    div.textContent = msg;
+    div.style.display = msg ? '' : 'none';
+  }
+
+  // ── 유틸 ──
+  function pad2(n) { return String(n).padStart(2, '0'); }
+
+  function escHtml(s) {
+    if (s == null) return '';
+    var d = document.createElement('div');
+    d.textContent = String(s);
+    return d.innerHTML;
+  }
+
+  function escAttr(s) {
+    return String(s || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function formatMoney(n) {
+    return Number(n).toLocaleString();
+  }
+
+  // ── 초기화 ──
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('searchInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    // URL 파라미터에서 store 코드 읽기
+    var params = new URLSearchParams(window.location.search);
+    var storeCode = params.get('store');
+
+    if (!storeCode) {
+      showFatalError('URL에 매장 코드가 없습니다.<br><small>예: ?store=15903-0001</small>');
+      return;
+    }
+
+    // stores.json에서 GAS URL 조회
+    fetch('stores.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var info = data.stores && data.stores[storeCode];
+        if (!info || !info.url) {
+          showFatalError('매장 코드 <b>' + escHtml(storeCode) + '</b> 를 찾을 수 없습니다.');
+          return;
+        }
+        GAS_URL = info.url;
+        document.getElementById('siteTitle').textContent = info.name || '우리동네 국민상회';
+        document.title = info.name || '우리동네 국민상회';
+        loadShowcase();
+      })
+      .catch(function() {
+        showFatalError('stores.json 을 불러오지 못했습니다.');
+      });
+  });
+
+  function showFatalError(msg) {
+    document.getElementById('showcaseContent').innerHTML =
+      '<div class="state-msg" style="color:#c5221f;">' + msg + '</div>';
+    document.getElementById('dateTabsWrap').style.display = 'none';
+  }
+</script>
+</body>
+</html>
