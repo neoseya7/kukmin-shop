@@ -529,7 +529,7 @@
 
       var badgeHtml = '';
       if (showLevelFlag && item.level) {
-        var lk = item.level.toLowerCase();
+        var lk = item.level === currentLabels.plenty ? 'plenty' : (item.level === currentLabels.soon ? 'soon' : 'closed');
         var cls = lk === 'plenty' ? 'badge-plenty' : (lk === 'soon' ? 'badge-soon' : 'badge-closed');
         var lbl = currentLabels[lk] || item.level;
         badgeHtml = '<span class="badge ' + cls + '">' + escHtml(lbl) + '</span>';
