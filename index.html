@@ -670,11 +670,18 @@
       return;
     }
 
-    // stores.json에서 GAS URL 조회
-    fetch('stores.json')
+    // stores.json에서 GAS URL 조회 (캐시 버스팅으로 항상 최신 버전 사용)
+    fetch('stores.json?_=' + Math.floor(Date.now() / 300000))
       .then(function(r) { return r.json(); })
       .then(function(data) {
+        // 정확 일치 우선, 실패 시 NFC 정규화+공백 정규화 비교
         var info = data.stores && data.stores[storeCode];
+        if (!info && data.stores) {
+          var norm = function(s) { return s.normalize('NFC').replace(/\s+/g, ' ').trim(); };
+          var normCode = norm(storeCode);
+          var matchKey = Object.keys(data.stores).find(function(k) { return norm(k) === normCode; });
+          if (matchKey) { storeCode = matchKey; info = data.stores[matchKey]; }
+        }
         if (!info || !info.url) {
           var keys = data.stores ? Object.keys(data.stores) : [];
           showFatalError(
