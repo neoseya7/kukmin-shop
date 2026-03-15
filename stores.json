@@ -68,10 +68,6 @@
       "name": "우리동네 국민상회 구파발역점",
       "url": "https://script.google.com/macros/s/AKfycbwRQPoN8f7YA4IQWmgR8llMIiSIcnxo1c2PN2k-s6zbj6z5ak8wUm9wokwxzaYJKFAY/exec"
     },
-    "1cQ6LC6tb-jGvjzeCDLCc4dQo6abEHlRgeIq0ZSmzODM": {
-      "name": "국민상회 학익점",
-      "url": "https://script.google.com/macros/s/AKfycbzZXufAX44wi0JFr50ADXwjuKifGp1ecrjm2fa20SFqq4NbAskQ6shrMZmARGUU78nB/exec"
-    },
     "1qO5HZPbiwANw4riqYjCVad-Nj4GHjJ_vq8cuBYNJWRo": {
       "name": "우리동네 국민상회 대치점",
       "url": "https://script.google.com/macros/s/AKfycbxUZ8Jxv8XA5r8qX8GM24lffIN8apvOVIwQe_KXtLEg9OY7QgEFxdunPS8C-7-UTExOdQ/exec"
@@ -199,6 +195,10 @@
     "1Pe4JVYxWCAncgsB_K1JvMJpE7ugpBg0pPf4_aNmPyKY": {
       "name": "우리동네 국민상회 광교호수점",
       "url": "https://script.google.com/macros/s/AKfycbzFI9Vvtz2lMzTGsrKAs5bk-r-eC3LAL81QkKVOUt7hsbxMZfxzrw122EtO8ZQgjP2fLA/exec"
+    },
+    "1NwP9JrTagCWy7-mYR2UNfpyoa4kXASw4DpCdjRqscrk": {
+      "name": "우리동네 국민상회 청라점",
+      "url": "https://script.google.com/macros/s/AKfycbzR9XxJTowADZ3D2M1AoKqtLlEEqm5bEjkjpmVdjMgae7zmwTk5w13E0Goa30ipKmVjIA/exec"
     }
   }
 }
