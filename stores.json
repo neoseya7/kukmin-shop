@@ -1,13 +1,5 @@
 {
   "stores": {
-    "1kOepsA6TSANDOZJFLIIztu_gB4KplVZRz4iy8hnifE8": {
-      "name": "일괄업데이트",
-      "url": "https://script.google.com/macros/s/AKfycbzLgw7npE6Mz446n5ByuBfPGrPMp4vu4InrnTWHj1WJrXtl5_eeYW57D4kfbRsdDgGZLw/exec"
-    },
-    "10frcRIsM4JGvIvSdYnjsCTHGk23dMbt2QwUQ48eKpXA": {
-      "name": "카카오톡공동구매",
-      "url": "https://script.google.com/macros/s/AKfycbxn9Qhf66DQCl7DGiQi-5StIz3akw28-NB_6WMPvj2LA9r_013T2kYnezA5dIEi1NAd/exec"
-    },
     "1oFV9OadNq-F239rISY8GPHw1HCLJc1EMVXIGnlO-3j8": {
       "name": "우리동네 국민상회 소사괴안점",
       "url": "https://script.google.com/macros/s/AKfycbytdUk0X8XgD3Oqp-JW9UdaRuEu0meVytIIjK4ZljpSIbWbcKILDllRzS8mwyOWwvk4/exec"
@@ -207,6 +199,10 @@
     "1l8No-9__6LWCl4smzrhnhfjSjMls8yFgz4Tuhqrv9AU": {
       "name": "우리동네 국민상회 덕이점",
       "url": "https://script.google.com/macros/s/AKfycbyAKoK3QW0l3uX7MwxIpc1dCu3lBcjzUAdmOJZ2EU3ABE8j3fu2N3vb7gs5iunYb5xKjQ/exec"
+    },
+    "1NFuKRAKuasTMo5iNrN_b7dQIcVoVf6VldK2VJRJP5tc": {
+      "name": "우리동네 국민상회 수원매탄점",
+      "url": "https://script.google.com/macros/s/AKfycbznf2XVEQ-w3Q-bDyGGCiS7DcxWMOGdoFFQQwh0NLDmQow6VCc8MuQLMbR6bymT34A/exec"
     }
   }
 }
